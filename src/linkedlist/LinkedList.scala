@@ -1,5 +1,7 @@
 package linkedlist
 
+import stack.StackImpl
+
 class LinkedList[T] extends Iterable[T] {
 
   var h: Option[Node[T]] = None
@@ -111,5 +113,15 @@ class LinkedList[T] extends Iterable[T] {
       current = next
     }
     this
+  }
+
+  def printInReverse(): Unit = {
+    val stack = new StackImpl[T]
+    this.foreach(node => stack.push(node))
+    var node = stack.pop()
+    while (node.isDefined) {
+      println(node.get)
+      node = stack.pop()
+    }
   }
 }
